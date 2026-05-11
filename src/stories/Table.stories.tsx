@@ -1,5 +1,6 @@
 import type { Meta, StoryObj } from "@storybook/react-vite";
 import { Table, TableHead, TableBody, TableRow, TableHeaderCell, TableCell } from "../components/Table";
+import { Tag } from "../components/Tag";
 import { Badge } from "../components/Badge";
 
 const meta: Meta<typeof Table> = {
@@ -34,9 +35,12 @@ export const Default: Story = {
             <TableCell>{r.email}</TableCell>
             <TableCell>{r.role}</TableCell>
             <TableCell>
-              <Badge variant={r.status === "Active" ? "success" : "neutral"} size="sm">
-                {r.status}
-              </Badge>
+              <span className="inline-flex items-center gap-2">
+                <Badge state={r.status === "Active" ? "success" : "neutral"} size="sm" />
+                <Tag variant={r.status === "Active" ? "success" : "neutral"} size="sm">
+                  {r.status}
+                </Tag>
+              </span>
             </TableCell>
           </TableRow>
         ))}

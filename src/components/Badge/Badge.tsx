@@ -1,70 +1,54 @@
-import type { ReactNode } from "react";
-
-export type BadgeVariant =
-  | "neutral"
-  | "primary"
-  | "success"
+export type BadgeState =
   | "error"
   | "alert"
-  | "yellow"
-  | "purple"
+  | "inProgress"
+  | "success"
+  | "neutral"
   | "lightBlue"
-  | "limeGreen";
+  | "limeGreen"
+  | "yellow"
+  | "purple";
 
-export type BadgeSize = "sm" | "md";
+export type BadgeSize = "sm" | "md" | "lg";
 
 export interface BadgeProps {
-  variant?: BadgeVariant;
+  state?: BadgeState;
   size?: BadgeSize;
-  icon?: ReactNode;
-  children: ReactNode;
   className?: string;
 }
 
-const variantStyles: Record<BadgeVariant, string> = {
-  neutral:
-    "bg-[var(--color-surface-neutral-default)] text-[var(--color-text-subtitle)] border-[var(--color-border-neutral-subtle)]",
-  primary:
-    "bg-[var(--color-surface-primary-more-subtle)] text-[var(--color-text-link)] border-[var(--color-border-primary-subtle)]",
-  success:
-    "bg-[var(--color-surface-success-more-subtle)] text-[var(--color-text-success)] border-[var(--color-border-success-subtle)]",
-  error:
-    "bg-[var(--color-surface-error-more-subtle)] text-[var(--color-text-error)] border-[var(--color-border-error-subtle)]",
-  alert:
-    "bg-[var(--color-surface-alert-more-subtle)] text-[var(--color-text-alert)] border-[var(--color-border-alert-subtle)]",
-  yellow:
-    "bg-[var(--color-surface-yellow-more-subtle)] text-[var(--color-text-yellow)] border-[var(--color-border-yellow-subtle)]",
-  purple:
-    "bg-[var(--color-surface-purple-more-subtle)] text-[var(--color-text-purple)] border-[var(--color-border-primary-subtle)]",
-  lightBlue:
-    "bg-[var(--color-surface-lightblue-more-subtle)] text-[var(--color-text-light-blue)] border-[var(--color-border-primary-subtle)]",
-  limeGreen:
-    "bg-[var(--color-surface-lime-more-subtle)] text-[var(--color-text-lime-green)] border-[var(--color-border-success-subtle)]",
+const stateColors: Record<BadgeState, string> = {
+  error: "bg-[var(--color-surface-error-default)]",
+  alert: "bg-[var(--color-surface-alert-default)]",
+  inProgress: "bg-[var(--color-surface-primary-default)]",
+  success: "bg-[var(--color-surface-success-default)]",
+  neutral: "bg-[var(--color-surface-neutral-emphasis)]",
+  lightBlue: "bg-[var(--color-surface-lightblue-default)]",
+  limeGreen: "bg-[var(--color-surface-lime-default)]",
+  yellow: "bg-[var(--color-surface-yellow-default)]",
+  purple: "bg-[var(--color-surface-purple-default)]",
 };
 
 const sizeStyles: Record<BadgeSize, string> = {
-  sm: "h-5 px-1.5 text-[10px] gap-1",
-  md: "h-6 px-2 text-[12px] gap-1.5",
+  sm: "size-1.5",
+  md: "size-2",
+  lg: "size-3",
 };
 
 export function Badge({
-  variant = "neutral",
+  state = "neutral",
   size = "md",
-  icon,
-  children,
   className = "",
 }: BadgeProps) {
   return (
     <span
+      role="status"
       className={[
-        "inline-flex items-center font-semibold rounded-[var(--radius-s)] border",
-        variantStyles[variant],
+        "inline-block rounded-full shrink-0",
+        stateColors[state],
         sizeStyles[size],
         className,
       ].join(" ")}
-    >
-      {icon && <span className="shrink-0">{icon}</span>}
-      {children}
-    </span>
+    />
   );
 }

@@ -2,6 +2,7 @@ export * from "./Button";
 export * from "./Topbar";
 export * from "./Sidebar";
 export * from "./Badge";
+export * from "./Tag";
 export * from "./Input";
 export * from "./Modal";
 export * from "./Table";

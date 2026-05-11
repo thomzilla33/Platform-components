@@ -5,42 +5,70 @@ const meta: Meta<typeof Badge> = {
   title: "Components/Badge",
   component: Badge,
   argTypes: {
-    variant: {
+    state: {
       control: "select",
       options: [
-        "neutral", "primary", "success", "error", "alert",
-        "yellow", "purple", "lightBlue", "limeGreen",
+        "error", "alert", "inProgress", "success", "neutral",
+        "lightBlue", "limeGreen", "yellow", "purple",
       ],
     },
-    size: { control: "select", options: ["sm", "md"] },
+    size: { control: "select", options: ["sm", "md", "lg"] },
   },
 };
 export default meta;
 type Story = StoryObj<typeof Badge>;
 
-export const Default: Story = { args: { children: "Badge" } };
+export const Default: Story = { args: { state: "error" } };
 
-export const AllVariants: Story = {
+export const AllStates: Story = {
   render: () => (
-    <div className="flex flex-wrap gap-2 items-center">
-      <Badge variant="neutral">Neutral</Badge>
-      <Badge variant="primary">Primary</Badge>
-      <Badge variant="success">Success</Badge>
-      <Badge variant="error">Error</Badge>
-      <Badge variant="alert">Alert</Badge>
-      <Badge variant="yellow">Yellow</Badge>
-      <Badge variant="purple">Purple</Badge>
-      <Badge variant="lightBlue">Light Blue</Badge>
-      <Badge variant="limeGreen">Lime Green</Badge>
+    <div className="flex flex-col gap-4">
+      <div className="flex gap-3 items-center">
+        <Badge state="error" />
+        <span className="text-sm text-[var(--color-text-body)]">Error / Notification</span>
+      </div>
+      <div className="flex gap-3 items-center">
+        <Badge state="alert" />
+        <span className="text-sm text-[var(--color-text-body)]">Alert</span>
+      </div>
+      <div className="flex gap-3 items-center">
+        <Badge state="inProgress" />
+        <span className="text-sm text-[var(--color-text-body)]">In Progress</span>
+      </div>
+      <div className="flex gap-3 items-center">
+        <Badge state="success" />
+        <span className="text-sm text-[var(--color-text-body)]">Success</span>
+      </div>
+      <div className="flex gap-3 items-center">
+        <Badge state="neutral" />
+        <span className="text-sm text-[var(--color-text-body)]">Neutral</span>
+      </div>
+      <div className="flex gap-3 items-center">
+        <Badge state="lightBlue" />
+        <span className="text-sm text-[var(--color-text-body)]">Light Blue</span>
+      </div>
+      <div className="flex gap-3 items-center">
+        <Badge state="limeGreen" />
+        <span className="text-sm text-[var(--color-text-body)]">Lime Green</span>
+      </div>
+      <div className="flex gap-3 items-center">
+        <Badge state="yellow" />
+        <span className="text-sm text-[var(--color-text-body)]">Yellow</span>
+      </div>
+      <div className="flex gap-3 items-center">
+        <Badge state="purple" />
+        <span className="text-sm text-[var(--color-text-body)]">Purple</span>
+      </div>
     </div>
   ),
 };
 
-export const Small: Story = {
+export const Sizes: Story = {
   render: () => (
-    <div className="flex gap-2 items-center">
-      <Badge size="sm" variant="primary">SM</Badge>
-      <Badge size="md" variant="primary">MD</Badge>
+    <div className="flex gap-4 items-center">
+      <Badge state="error" size="sm" />
+      <Badge state="error" size="md" />
+      <Badge state="error" size="lg" />
     </div>
   ),
 };
