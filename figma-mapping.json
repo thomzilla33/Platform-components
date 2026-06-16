@@ -1,0 +1,570 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$version": "1.0.0",
+  "$description": "AIMS OS Design System — Figma-to-Code component mapping. Machine-readable file for AI agents to generate pixel-perfect code using the real component library.",
+  "package": "@aims/platform-components",
+  "figmaFile": "https://www.figma.com/design/v6rmYKA2zmyXWOahlxLOeI/Design-System---AIMS-OS",
+  "figmaLibrary": "Design System - AIMS OS",
+  "imports": {
+    "components": "import { ComponentName } from '@aims/platform-components'",
+    "tokens": "import { colors, semantic, typography, spacing, radius, breakpoints, shadow } from '@aims/platform-components/tokens'",
+    "styles": "import '@aims/platform-components/styles'"
+  },
+  "components": {
+    "Button": {
+      "figmaName": "Button",
+      "figmaComponentKey": "cdac871bb009d30587c3eb883b135a4f2a17c625",
+      "codePath": "src/components/Button/Button.tsx",
+      "import": "import { Button } from '@aims/platform-components'",
+      "description": "Primary action button with variant and size support.",
+      "props": {
+        "variant": {
+          "type": "enum",
+          "values": ["primary", "secondary", "ghost", "destructive"],
+          "default": "primary",
+          "figmaProperty": "Variant"
+        },
+        "size": {
+          "type": "enum",
+          "values": ["sm", "md", "lg"],
+          "default": "md",
+          "figmaProperty": "Size"
+        },
+        "icon": {
+          "type": "ReactNode",
+          "optional": true,
+          "description": "Icon element to render alongside text"
+        },
+        "iconPosition": {
+          "type": "enum",
+          "values": ["left", "right"],
+          "default": "left"
+        },
+        "disabled": {
+          "type": "boolean",
+          "default": false
+        },
+        "children": {
+          "type": "ReactNode",
+          "required": true,
+          "description": "Button label text"
+        }
+      },
+      "examples": [
+        "<Button variant=\"primary\" size=\"md\">Save</Button>",
+        "<Button variant=\"destructive\" size=\"sm\" icon={<TrashIcon />}>Delete</Button>",
+        "<Button variant=\"ghost\">Cancel</Button>"
+      ]
+    },
+    "Badge": {
+      "figmaName": "Badge",
+      "figmaComponentKey": "3f0efda7f9110295307b88d99b7e5728d128316b",
+      "codePath": "src/components/Badge/Badge.tsx",
+      "import": "import { Badge } from '@aims/platform-components'",
+      "description": "Small colored dot indicator for status display.",
+      "props": {
+        "state": {
+          "type": "enum",
+          "values": ["error", "alert", "inProgress", "success", "neutral", "lightBlue", "limeGreen", "yellow", "purple"],
+          "default": "neutral",
+          "figmaProperty": "State"
+        },
+        "size": {
+          "type": "enum",
+          "values": ["sm", "md", "lg"],
+          "default": "md",
+          "figmaProperty": "Size"
+        }
+      },
+      "examples": [
+        "<Badge state=\"success\" size=\"md\" />",
+        "<Badge state=\"error\" />",
+        "<Badge state=\"inProgress\" size=\"sm\" />"
+      ]
+    },
+    "Tag": {
+      "figmaName": "Tags variants",
+      "figmaComponentKey": "d995339f57460580d2f3edbd37065eeee950c091",
+      "codePath": "src/components/Tag/Tag.tsx",
+      "import": "import { Tag } from '@aims/platform-components'",
+      "description": "Colored label for categorization with optional icon.",
+      "props": {
+        "variant": {
+          "type": "enum",
+          "values": ["neutral", "primary", "success", "error", "alert", "yellow", "purple", "lightBlue", "limeGreen"],
+          "default": "neutral",
+          "figmaProperty": "Variant"
+        },
+        "size": {
+          "type": "enum",
+          "values": ["sm", "md"],
+          "default": "md",
+          "figmaProperty": "Size"
+        },
+        "icon": {
+          "type": "ReactNode",
+          "optional": true,
+          "description": "Leading icon element"
+        },
+        "children": {
+          "type": "ReactNode",
+          "required": true,
+          "description": "Tag label text"
+        }
+      },
+      "examples": [
+        "<Tag variant=\"success\">Active</Tag>",
+        "<Tag variant=\"error\" size=\"sm\" icon={<AlertIcon />}>Failed</Tag>"
+      ]
+    },
+    "Input": {
+      "figmaName": "Node Config / Text Input",
+      "figmaComponentKey": "444be3b01e7234e323d1f2e680f4dde71905ce63",
+      "codePath": "src/components/Input/Input.tsx",
+      "import": "import { Input } from '@aims/platform-components'",
+      "description": "Text input field with label, hint, error, and icon support. Uses forwardRef.",
+      "props": {
+        "label": {
+          "type": "string",
+          "optional": true,
+          "description": "Field label displayed above the input"
+        },
+        "hint": {
+          "type": "string",
+          "optional": true,
+          "description": "Helper text below the input"
+        },
+        "error": {
+          "type": "string",
+          "optional": true,
+          "description": "Error message (replaces hint, turns border red)"
+        },
+        "leadingIcon": {
+          "type": "ReactNode",
+          "optional": true,
+          "description": "Icon inside the input on the left"
+        },
+        "trailingIcon": {
+          "type": "ReactNode",
+          "optional": true,
+          "description": "Icon inside the input on the right"
+        },
+        "inputSize": {
+          "type": "enum",
+          "values": ["sm", "md", "lg"],
+          "default": "md",
+          "figmaProperty": "Size",
+          "note": "Named 'inputSize' instead of 'size' to avoid conflict with HTML attribute"
+        },
+        "disabled": {
+          "type": "boolean",
+          "default": false
+        },
+        "placeholder": {
+          "type": "string",
+          "optional": true
+        }
+      },
+      "examples": [
+        "<Input label=\"Email\" placeholder=\"you@example.com\" />",
+        "<Input label=\"Name\" error=\"Required field\" />",
+        "<Input leadingIcon={<SearchIcon />} placeholder=\"Search...\" inputSize=\"sm\" />"
+      ]
+    },
+    "Select": {
+      "figmaName": "Filter Section / Search Select",
+      "figmaComponentKey": "9e62c4e60e9d89640ffe621cedac0f0f5060e09c",
+      "codePath": "src/components/Input/Select.tsx",
+      "import": "import { Select } from '@aims/platform-components'",
+      "description": "Dropdown select field with label, hint, error support. Uses forwardRef.",
+      "props": {
+        "label": {
+          "type": "string",
+          "optional": true
+        },
+        "hint": {
+          "type": "string",
+          "optional": true
+        },
+        "error": {
+          "type": "string",
+          "optional": true
+        },
+        "placeholder": {
+          "type": "string",
+          "optional": true,
+          "description": "Disabled first option text"
+        },
+        "options": {
+          "type": "{ value: string; label: string }[]",
+          "required": true,
+          "description": "Array of option objects"
+        },
+        "selectSize": {
+          "type": "enum",
+          "values": ["sm", "md", "lg"],
+          "default": "md",
+          "note": "Named 'selectSize' to avoid conflict with HTML attribute"
+        },
+        "disabled": {
+          "type": "boolean",
+          "default": false
+        }
+      },
+      "examples": [
+        "<Select label=\"Status\" placeholder=\"Select...\" options={[{ value: 'active', label: 'Active' }, { value: 'inactive', label: 'Inactive' }]} />",
+        "<Select label=\"Priority\" error=\"Required\" options={priorities} selectSize=\"sm\" />"
+      ]
+    },
+    "Textarea": {
+      "figmaName": "Edit text Document",
+      "figmaComponentKey": "d965d545690ee9812d4c383ec44ea347e16b8595",
+      "codePath": "src/components/Input/Textarea.tsx",
+      "import": "import { Textarea } from '@aims/platform-components'",
+      "description": "Multi-line text input with label, hint, error support. Uses forwardRef.",
+      "props": {
+        "label": {
+          "type": "string",
+          "optional": true
+        },
+        "hint": {
+          "type": "string",
+          "optional": true
+        },
+        "error": {
+          "type": "string",
+          "optional": true
+        },
+        "disabled": {
+          "type": "boolean",
+          "default": false
+        },
+        "placeholder": {
+          "type": "string",
+          "optional": true
+        }
+      },
+      "examples": [
+        "<Textarea label=\"Description\" placeholder=\"Enter details...\" />",
+        "<Textarea label=\"Notes\" error=\"Too short\" />"
+      ]
+    },
+    "Toggle": {
+      "figmaName": "Toggle Component",
+      "figmaComponentKey": "e57b423e58d713b4c0f3b8819832d7927e0bbe82",
+      "codePath": "src/components/Toggle/Toggle.tsx",
+      "import": "import { Toggle } from '@aims/platform-components'",
+      "description": "Switch toggle for boolean values. Uses forwardRef.",
+      "props": {
+        "label": {
+          "type": "string",
+          "optional": true,
+          "description": "Label text next to the toggle"
+        },
+        "toggleSize": {
+          "type": "enum",
+          "values": ["sm", "md"],
+          "default": "md",
+          "note": "Named 'toggleSize' to avoid conflict with HTML attribute"
+        },
+        "disabled": {
+          "type": "boolean",
+          "default": false
+        },
+        "checked": {
+          "type": "boolean",
+          "description": "Controlled checked state"
+        },
+        "onChange": {
+          "type": "ChangeEventHandler<HTMLInputElement>",
+          "description": "Change handler"
+        }
+      },
+      "examples": [
+        "<Toggle label=\"Enable notifications\" />",
+        "<Toggle toggleSize=\"sm\" checked={enabled} onChange={handleToggle} />"
+      ]
+    },
+    "Modal": {
+      "figmaName": "Modal Dialog Content",
+      "figmaComponentKey": "686bbf63125d91c0001c6c5256079f7481fc1104",
+      "codePath": "src/components/Modal/Modal.tsx",
+      "import": "import { Modal } from '@aims/platform-components'",
+      "description": "Dialog overlay using native <dialog> element.",
+      "props": {
+        "open": {
+          "type": "boolean",
+          "required": true,
+          "description": "Controls visibility"
+        },
+        "onClose": {
+          "type": "() => void",
+          "required": true,
+          "description": "Called on close (backdrop click, ESC, or programmatic)"
+        },
+        "title": {
+          "type": "string",
+          "optional": true
+        },
+        "description": {
+          "type": "string",
+          "optional": true
+        },
+        "children": {
+          "type": "ReactNode",
+          "required": true,
+          "description": "Modal body content"
+        },
+        "footer": {
+          "type": "ReactNode",
+          "optional": true,
+          "description": "Footer area, typically action buttons"
+        },
+        "size": {
+          "type": "enum",
+          "values": ["sm", "md", "lg"],
+          "default": "md",
+          "figmaProperty": "Size"
+        }
+      },
+      "examples": [
+        "<Modal open={isOpen} onClose={handleClose} title=\"Confirm\" footer={<><Button variant=\"ghost\" onClick={handleClose}>Cancel</Button><Button onClick={handleConfirm}>Confirm</Button></>}>Are you sure?</Modal>"
+      ]
+    },
+    "Topbar": {
+      "figmaName": "Topbar",
+      "figmaComponentKey": "0128b2e076f34f0591317ccbb4573188f04c185e",
+      "codePath": "src/components/Topbar/Topbar.tsx",
+      "import": "import { Topbar } from '@aims/platform-components'",
+      "description": "Top navigation bar with three-slot layout (leading, center, trailing).",
+      "props": {
+        "leading": {
+          "type": "ReactNode",
+          "optional": true,
+          "description": "Left section: logo or brand"
+        },
+        "center": {
+          "type": "ReactNode",
+          "optional": true,
+          "description": "Center section: navigation tabs or breadcrumbs"
+        },
+        "trailing": {
+          "type": "ReactNode",
+          "optional": true,
+          "description": "Right section: actions, user avatar"
+        }
+      },
+      "examples": [
+        "<Topbar leading={<Logo />} center={<TabGroup>...</TabGroup>} trailing={<TopbarButton icon={<SettingsIcon />} />} />"
+      ]
+    },
+    "TopbarButton": {
+      "figmaName": "Topbar Button",
+      "figmaComponentKey": "a35c9aa1e90ff921efe5947646b07804f5bdc783",
+      "codePath": "src/components/Topbar/TopbarButton.tsx",
+      "import": "import { TopbarButton } from '@aims/platform-components'",
+      "description": "Button designed for the Topbar with active state.",
+      "props": {
+        "icon": {
+          "type": "ReactNode",
+          "optional": true
+        },
+        "active": {
+          "type": "boolean",
+          "default": false,
+          "figmaProperty": "Active"
+        },
+        "children": {
+          "type": "ReactNode",
+          "optional": true,
+          "description": "Button label text"
+        }
+      },
+      "examples": [
+        "<TopbarButton icon={<BellIcon />} />",
+        "<TopbarButton active>Dashboard</TopbarButton>"
+      ]
+    },
+    "Sidebar": {
+      "figmaName": "Sidebar",
+      "figmaComponentKey": "4b2cd27c467f9918d7b48680f78fceb55d0d15ee",
+      "codePath": "src/components/Sidebar/Sidebar.tsx",
+      "import": "import { Sidebar } from '@aims/platform-components'",
+      "description": "Collapsible sidebar with header, body, and footer slots.",
+      "props": {
+        "header": {
+          "type": "ReactNode",
+          "optional": true,
+          "description": "Top section, typically logo or search"
+        },
+        "children": {
+          "type": "ReactNode",
+          "required": true,
+          "description": "Navigation items (SidebarItem components)"
+        },
+        "footer": {
+          "type": "ReactNode",
+          "optional": true,
+          "description": "Bottom section, typically user info or settings"
+        },
+        "collapsed": {
+          "type": "boolean",
+          "default": false,
+          "figmaProperty": "Collapsed",
+          "description": "When true, sidebar narrows to icon-only mode (w-16)"
+        }
+      },
+      "examples": [
+        "<Sidebar header={<Logo />} footer={<UserInfo />}><SidebarItem icon={<HomeIcon />} label=\"Home\" active /><SidebarItem icon={<InboxIcon />} label=\"Inbox\" /></Sidebar>"
+      ]
+    },
+    "SidebarItem": {
+      "figmaName": "Sidebar Button + Text",
+      "figmaComponentKey": "df7878293540d67508a76050171ba54f9f7c4735",
+      "codePath": "src/components/Sidebar/SidebarItem.tsx",
+      "import": "import { SidebarItem } from '@aims/platform-components'",
+      "description": "Navigation item for use inside Sidebar.",
+      "props": {
+        "icon": {
+          "type": "ReactNode",
+          "optional": true
+        },
+        "label": {
+          "type": "string",
+          "required": true,
+          "figmaProperty": "Label"
+        },
+        "active": {
+          "type": "boolean",
+          "default": false,
+          "figmaProperty": "Active"
+        },
+        "collapsed": {
+          "type": "boolean",
+          "default": false,
+          "description": "Should match parent Sidebar collapsed prop"
+        },
+        "badge": {
+          "type": "ReactNode",
+          "optional": true,
+          "description": "Badge or count shown on the right"
+        }
+      },
+      "examples": [
+        "<SidebarItem icon={<HomeIcon />} label=\"Home\" active />",
+        "<SidebarItem icon={<InboxIcon />} label=\"Inbox\" badge={<Badge state=\"error\" size=\"sm\" />} />"
+      ]
+    },
+    "TabGroup": {
+      "figmaName": "Tab Switch",
+      "figmaComponentKey": "e06038e9b11317e266d790ae3e30ab33d3e4032b",
+      "codePath": "src/components/Tab/Tab.tsx",
+      "import": "import { TabGroup } from '@aims/platform-components'",
+      "description": "Container for TabItem components. Provides the tab bar background.",
+      "props": {
+        "children": {
+          "type": "ReactNode",
+          "required": true,
+          "description": "TabItem components"
+        }
+      },
+      "examples": [
+        "<TabGroup><TabItem active>Overview</TabItem><TabItem>Details</TabItem><TabItem>History</TabItem></TabGroup>"
+      ]
+    },
+    "TabItem": {
+      "figmaName": "Tab Switcher item",
+      "figmaComponentKey": "26f79cd2dc06bd32585dfd89809fd6fa1a7bac1e",
+      "codePath": "src/components/Tab/Tab.tsx",
+      "import": "import { TabItem } from '@aims/platform-components'",
+      "description": "Individual tab button for use inside TabGroup.",
+      "props": {
+        "active": {
+          "type": "boolean",
+          "default": false,
+          "figmaProperty": "Active"
+        },
+        "icon": {
+          "type": "ReactNode",
+          "optional": true
+        },
+        "children": {
+          "type": "ReactNode",
+          "required": true,
+          "description": "Tab label text"
+        },
+        "onClick": {
+          "type": "() => void",
+          "optional": true
+        }
+      },
+      "examples": [
+        "<TabItem active icon={<ListIcon />}>All Items</TabItem>",
+        "<TabItem onClick={() => setTab('settings')}>Settings</TabItem>"
+      ]
+    },
+    "Table": {
+      "figmaName": "Table Title component",
+      "figmaComponentKey": "6ce51a315f1d3d087026d6f1f3625429045240b1",
+      "codePath": "src/components/Table/Table.tsx",
+      "import": "import { Table, TableHead, TableBody, TableRow, TableHeaderCell, TableCell } from '@aims/platform-components'",
+      "description": "Compound table component. Always use all sub-components together.",
+      "subComponents": {
+        "Table": "Root wrapper with border and overflow handling",
+        "TableHead": "Header section (<thead>)",
+        "TableBody": "Body section (<tbody>)",
+        "TableRow": "Row with optional selection and click handler",
+        "TableHeaderCell": "Header cell with alignment (left|center|right)",
+        "TableCell": "Data cell with alignment (left|center|right)"
+      },
+      "props": {
+        "TableRow.selected": {
+          "type": "boolean",
+          "default": false,
+          "description": "Highlights the row"
+        },
+        "TableRow.onClick": {
+          "type": "() => void",
+          "optional": true,
+          "description": "Makes row clickable"
+        },
+        "TableHeaderCell.align": {
+          "type": "enum",
+          "values": ["left", "center", "right"],
+          "default": "left"
+        },
+        "TableCell.align": {
+          "type": "enum",
+          "values": ["left", "center", "right"],
+          "default": "left"
+        }
+      },
+      "examples": [
+        "<Table><TableHead><TableRow><TableHeaderCell>Name</TableHeaderCell><TableHeaderCell>Status</TableHeaderCell></TableRow></TableHead><TableBody><TableRow><TableCell>Project A</TableCell><TableCell><Tag variant=\"success\">Active</Tag></TableCell></TableRow></TableBody></Table>"
+      ]
+    }
+  },
+  "tokens": {
+    "source": "src/tokens/index.ts",
+    "cssVariables": "src/index.css",
+    "collections": {
+      "colors": "src/tokens/colors.ts",
+      "semantic": "src/tokens/semantic.ts",
+      "typography": "src/tokens/typography.ts",
+      "spacing": "src/tokens/spacing.ts"
+    },
+    "usage": {
+      "colors": "Use CSS variables: var(--color-primary-500), var(--color-gray-700)",
+      "surfaces": "var(--color-surface-{semantic}-{variant}) e.g. var(--color-surface-primary-default)",
+      "text": "var(--color-text-{role}) e.g. var(--color-text-title), var(--color-text-body)",
+      "borders": "var(--color-border-{semantic}-{variant}) e.g. var(--color-border-neutral-subtle)",
+      "spacing": "var(--spacing-{scale}) where scale: 0, 0-5, 1, 2, 3, 4, 5, 6, 7, 10, 12, 16, 20",
+      "radius": "var(--radius-{size}) where size: none, xs, s, m, l, xl, xxl, full",
+      "typography": "Font: Inter. Sizes: 10-48px. Weights: 500(regular), 600(semibold), 700(bold), 800(extraBold), 900(black)"
+    }
+  },
+  "darkMode": {
+    "method": "CSS data attribute: [data-theme='dark']",
+    "description": "All CSS variables automatically switch values in dark mode. No code changes needed."
+  }
+}
